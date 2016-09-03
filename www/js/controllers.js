@@ -4,17 +4,19 @@ angular.module('starter.controllers', [])
 
 .controller('DrinkCtrl', function($scope, $rootScope, Drinks) {
 
-  var emoji = document.getElementById("emoji-level");
+  
   var range = document.getElementById("range-input");
   $scope.drinks = Drinks.all();
-  $rootScope.limit = 7;//range.value;
+  $scope.limit = $rootScope.limit || 'unset';
+  $scope.count = $scope.count || 0;
+  $scope.percent = $scope.percent || 0;
 
   $scope.incr = function(drink) {
     Drinks.incr(drink);
     $rootScope.count = ($rootScope.count || 0) + 1;
     var ratio = Math.floor(Math.min(7, 1 + 6 * $rootScope.count / $rootScope.limit));
     console.log($rootScope.limit +" " + ratio);
-    emoji.src = "img/emo/" + ratio + ".png";
+
   };
 
     console.log("ok");
@@ -29,19 +31,20 @@ angular.module('starter.controllers', [])
       text: {
         autoStyleContainer: false
       },
-      from: { color: '#333', width: 10 },
-      to: { color: '#333', width: 20 },
+      from: { color: '#9bfe8c', width: 10 },
+      to: { color: '#fe6565', width: 15 },
       // Set default step function for all animate calls
       step: function(state, circle) {
         circle.path.setAttribute('stroke', state.color);
         circle.path.setAttribute('stroke-width', state.width);
 
         var value = Math.round(circle.value() * 100);
-        if (value === 0) {
-          circle.setText('');
-        } else {
-          circle.setText(value + 1000 + " / " + 50000);
-        }
+        $scope.percent = value;
+        $scope.count = (circle.value() * $scope.limit).toFixed();
+        circle.setText('<img id="emoji-level" src="/img/emo/1.png" style="width: 50px">');
+        var emoji = document.getElementById("emoji-level");
+        var ind = Math.min(circle.value() * 7 + 1, 7);
+        emoji.src = "img/emo/" + value + ".png";
 
       }
     });
@@ -51,7 +54,7 @@ angular.module('starter.controllers', [])
     bar.animate(1.0);  // Number from 0.0 to 1.0
 })
 
-.controller('FriendsCtrl', function($scope, Chats) {
+.controller('DealsCtrl', function($scope) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -60,14 +63,6 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
-  $scope.chats = Chats.all();
-  $scope.highlight = function(chat) {
-    Chats.switchActive(chat);
-    console.log($scope.chats);
-  };
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
 })
 
 .controller('BuzzCtrl', function($scope, $rootScope, Chats) {

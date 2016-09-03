@@ -1,26 +1,16 @@
 <ion-view view-title="Buzz">
-  <ion-content class="has-header">
+  <ion-content class="has-header padding">
+  <p style="font-size: 5em; line-height: 2em; text-align: center; display: block;">&dollar;<span id="range-output">20</span></p>
 
-  <h3>Set your limit</h3>
+  <h3>Set tonight's budget:</h3>
   <div class="item range range-positive">
-    <i class="icon ion-ios-sunny-outline"></i>
-    <input id="range-input" type="range" name="volume" min="0" max="20" value="3" onchange="document.getElementById('range-output').innerHTML = this.value">
-    <div id="range-output" style="float: right; font-weight: bold; font-size: 2em;">3</div>
-    <i class="icon ion-ios-sunny"></i>
+    <span>&dollar;0</span>
+    <input id="range-input" type="range" name="volume" min="0" max="300" value="20" oninput="document.getElementById('range-output').innerHTML = this.value">
+    <span>&dollar;300</span>
   </div>
-  <h3>Choose your buddies</h3>
 
-    <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-class="{selected: chat.active}" ng-repeat="chat in chats" type="item-text-wrap" ng-click="highlight(chat)">
-        <img ng-src="{{chat.face}}">
-        <h2>{{chat.name}}</h2>
-        <p>{{chat.lastText}}</p>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-      </ion-item>
-    </ion-list>
-
-    <div class="">
-      <button class="button button-full button-positive" ng-click="saveRange()">
+    <div>
+      <button style="margin: 20px auto; display:block; width: 10em; height: 10em; border-radius:  500px; border: 1px dashed black" class="button button-large button-balanced" ng-click="saveRange()">
         Start
       </button>
     </div>

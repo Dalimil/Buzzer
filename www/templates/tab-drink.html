@@ -1,22 +1,11 @@
 <ion-view view-title="Drink">
   <ion-content class="padding has-header">
-  <h2>Drinks</h2>
-  	<p>
-    This is the drink selection
-    </p>
-    <div style="text-align: center">
-
-  		<img id="emoji-level" src="/img/emo/1.png" style="width: 50px">
-  	</div>
+  <p style="font-size: 2em; line-height: 1.2em; text-align: center; display: block;">&dollar;<span id="range-output">{{count}}</span><br /><span style="font-size: 0.5em; line-height: 1em">Tonight's limit is ${{limit}}.</span></p>
+  
     <div id="container"></div>
 
-    <ion-list>
-    	<ion-item class="item-avatar" ng-repeat="drink in drinks">
-    		<img src={{drink.img}}>
-    		<span class="badge badge-assertive">{{drink.count}}</span>
-			<button ng-click="incr(drink)" class="button icon-left ion-plus button-positive">Add</button>
-    	</ion-item>
-    </ion-list>
+    <p style="font-size: 1.2em; line-height: 2em; text-align: center; display: block; margin-top: 1em;">You have spent {{percent}}% of your budget.</p>
+
   </ion-content>
 </ion-view>
 
