@@ -1,10 +1,10 @@
 <ion-view view-title="Drink">
   <ion-content class="padding has-header">
-  <p style="font-size: 2em; line-height: 1.2em; text-align: center; display: block;">&dollar;<span id="range-output">{{count}}</span><br /><span style="font-size: 0.5em; line-height: 1em">Tonight's limit is ${{limit}}.</span></p>
+  <p style="font-size: 2em; line-height: 1.2em; text-align: center; display: block;">&dollar;<span id="field-count"></span><br /><span style="font-size: 0.5em; line-height: 1em">Tonight's limit is ${{main.limit}}.</span></p>
   
     <div id="container"></div>
 
-    <p style="font-size: 1.2em; line-height: 2em; text-align: center; display: block; margin-top: 1em;">You have spent {{percent}}% of your budget.</p>
+    <p style="font-size: 1.2em; line-height: 2em; text-align: center; display: block; margin-top: 1em;">You have spent <span id="field-percent"></span>% of your budget.</p>
 
   </ion-content>
 </ion-view>

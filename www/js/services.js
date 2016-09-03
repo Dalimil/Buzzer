@@ -1,5 +1,18 @@
 angular.module('starter.services', [])
 
+.factory("Main", function() {
+  var main = {
+    limit: 0,
+    count: 0,
+    percent: 0
+  }
+  return {
+    getMain: function() {
+      return main;
+    }
+  };
+})
+
 .factory("Drinks", function() {
   var drinks = [{
     img: 'img/drinks/beer.png'
