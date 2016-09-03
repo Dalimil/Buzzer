@@ -1,5 +1,30 @@
 angular.module('starter.services', [])
 
+.factory("Drinks", function() {
+  var drinks = [{
+    img: 'img/drinks/beer.png'
+  }, {
+    img: 'img/drinks/wine.png'
+  }, {
+    img: 'img/drinks/shot.png'
+  }, {
+    img: 'img/drinks/cocktail.png'
+  }].map(function(drink) {
+    var x = drink;
+    x.count = 0;
+    return x;
+  });
+  return {
+    all: function() {
+      return drinks;
+    },
+    incr: function(drink) {
+      var drink = drinks[drinks.indexOf(drink)];
+      drink.count += 1;
+    }
+  }
+})
+
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
 
@@ -19,16 +44,6 @@ angular.module('starter.services', [])
     name: 'Adam Bradleyson',
     lastText: 'I should buy a boat',
     face: 'img/adam.jpg'
-  }, {
-    id: 3,
-    name: 'Perry Governor',
-    lastText: 'Look at my mukluks!',
-    face: 'img/perry.png'
-  }, {
-    id: 4,
-    name: 'Mike Harrington',
-    lastText: 'This is wicked good ice cream.',
-    face: 'img/mike.png'
   }].map(function(chat) { 
     var x = chat;
     x.active = false;

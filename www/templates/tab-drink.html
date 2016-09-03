@@ -4,7 +4,17 @@
   	<p>
     This is the drink selection
     </p>
-    <img src="/img/emo/beer.png">
-    <img src="/img/emo/wine.png">
+    <div style="text-align: center">
+
+  		<img id="emoji-level" src="/img/emo/1.png" style="width: 50px">
+  	</div>
+    
+    <ion-list>
+    	<ion-item class="item-avatar" ng-repeat="drink in drinks">
+    		<img src={{drink.img}}>
+    		<span class="badge badge-assertive">{{drink.count}}</span>
+			<button ng-click="incr(drink)" class="button icon-left ion-plus button-positive">Add</button>
+    	</ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>
