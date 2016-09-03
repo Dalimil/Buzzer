@@ -8,5 +8,6 @@ Buzzer Ionic app
 	ionic serve
 
 ## Run on Android device
+	export ANDROID_HOME=/my/path/to/android/sdk
 	ionic build android
 	ionic run android

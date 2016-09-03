@@ -17,3 +17,11 @@ body, h1, h2, h3, h4, h5, h6, p {
 	background-color: #9bfe8c;
 	color: #414042;
 }
+
+.bar.bar-stable {
+	background-color: #ccffff;
+}
+.tabs {
+	background-color: #ccffff;
+	color: black;
+}
