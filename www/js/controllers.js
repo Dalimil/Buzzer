@@ -7,7 +7,7 @@ angular.module('starter.controllers', [])
   var emoji = document.getElementById("emoji-level");
   var range = document.getElementById("range-input");
   $scope.drinks = Drinks.all();
-  $rootScope.limit = range.value;
+  $rootScope.limit = 7;//range.value;
 
   $scope.incr = function(drink) {
     Drinks.incr(drink);
@@ -16,6 +16,39 @@ angular.module('starter.controllers', [])
     console.log($rootScope.limit +" " + ratio);
     emoji.src = "img/emo/" + ratio + ".png";
   };
+
+    console.log("ok");
+    var bar = new ProgressBar.Circle(document.getElementById("container"), {
+      color: '#aaa',
+      // This has to be the same size as the maximum width to
+      // prevent clipping
+      strokeWidth: 20,
+      trailWidth: 1,
+      easing: 'easeInOut',
+      duration: 9400,
+      text: {
+        autoStyleContainer: false
+      },
+      from: { color: '#333', width: 10 },
+      to: { color: '#333', width: 20 },
+      // Set default step function for all animate calls
+      step: function(state, circle) {
+        circle.path.setAttribute('stroke', state.color);
+        circle.path.setAttribute('stroke-width', state.width);
+
+        var value = Math.round(circle.value() * 100);
+        if (value === 0) {
+          circle.setText('');
+        } else {
+          circle.setText(value + 1000 + " / " + 50000);
+        }
+
+      }
+    });
+    bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
+    bar.text.style.fontSize = '1rem';
+
+    bar.animate(1.0);  // Number from 0.0 to 1.0
 })
 
 .controller('FriendsCtrl', function($scope, Chats) {
