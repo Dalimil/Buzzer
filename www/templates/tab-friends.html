@@ -1,0 +1,13 @@
+<ion-view view-title="Friends">
+  <ion-content>
+  <h3>Choose your buddies</h3>
+      <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-class="{selected: chat.active}" ng-repeat="chat in chats" type="item-text-wrap" ng-click="highlight(chat)">
+        <img ng-src="{{chat.face}}">
+        <h2>{{chat.name}}</h2>
+        <p>{{chat.lastText}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

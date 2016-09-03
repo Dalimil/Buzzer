@@ -1,0 +1,28 @@
+<ion-view view-title="Buzz">
+  <ion-content>
+  <h3>Set your limit</h3>
+  <div class="item range range-positive">
+    <i class="icon ion-ios-sunny-outline"></i>
+    <input type="range" name="volume" min="0" max="100" value="33">
+    <i class="icon ion-ios-sunny"></i>
+  </div>
+  <h3>Choose your buddies</h3>
+
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-class="{selected: chat.active}" ng-repeat="chat in chats" type="item-text-wrap" ng-click="highlight(chat)">
+        <img ng-src="{{chat.face}}">
+        <h2>{{chat.name}}</h2>
+        <p>{{chat.lastText}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+
+
+    <div class="">
+      <button class="button button-full button-positive">
+        Start
+      </button>
+    </div>
+  </ion-content>
+
+</ion-view>
