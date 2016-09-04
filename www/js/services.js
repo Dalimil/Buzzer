@@ -13,6 +13,32 @@ angular.module('starter.services', [])
   };
 })
 
+.factory("Deals", function() {
+  var deals = [{
+    title: "Milk & Honey",
+    description: "Night Club",
+    price: [25, 30]
+  }, {
+    title: "Hummus Bros",
+    description: "Restaurant",
+    price: [20, 25]
+  }, {
+    title: "Soho Zebrano",
+    description: "Night Club",
+    price: [45, 80]
+  }, {
+    title: "Be At One",
+    description: "Bar",
+    price: [60, 70]
+  }];
+
+  return {
+    all: function() {
+      return deals;
+    }
+  };
+})
+
 .factory("Drinks", function() {
   var drinks = [{
     img: 'img/drinks/beer.png'

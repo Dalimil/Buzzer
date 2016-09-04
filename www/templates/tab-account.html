@@ -1,9 +1,15 @@
 <ion-view view-title="Account">
   <ion-content class="has-header">
-    <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
-    </ion-toggle>
-    </ion-list>
+
+    <div style="text-align: center;margin-top: 3em;">
+    <form id="bank-form" action="https://node.developer.yodlee.com/authenticate/restserver/" method="POST">
+		<input type="hidden" name="app" value="10003600" />
+		<input type="hidden" name="rsession" id="field-session" value="08062013_1:d0e3f38ab3ddc61bf851359a17a9bf762d9fd1ee67d25536e99b1ddf996b7f032d6d64adc14493acd7a362ec08a9bbba31cab7ec46944dd4ad5651a59522fe5" />
+		<input type="hidden" name="token" id="field-token" value="41dfc1361242ab3f1828dc76d5596f0a07b6e7590e3af0cc7038c9270b87e704" /> 
+		<input type="hidden" name="redirectReq" value="true"/> 
+		<button id="submit-button" class="button button-balanced" type="submit" name="submit">Connect Account</button>
+	</form>
+	</div>
+
   </ion-content>
 </ion-view>

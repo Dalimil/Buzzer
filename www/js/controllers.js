@@ -105,11 +105,11 @@ angular.module('starter.controllers', [])
     }
   });
   bar.text.style.fontFamily = '"Lato", sans-serif';
+  $rootScope.bar = bar;
 
-  document.getElementById("gg").onclick = function(){ bar.animate(Math.min(1.0, bar.value() + 0.2)); };
 })
 
-.controller('DealsCtrl', function($scope) {
+.controller('DealsCtrl', function($scope, Deals) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -117,6 +117,7 @@ angular.module('starter.controllers', [])
   //
   //$scope.$on('$ionicView.enter', function(e) {
   //});
+  $scope.deals = Deals.all();
 
 })
 
@@ -128,6 +129,15 @@ angular.module('starter.controllers', [])
   //
   //$scope.$on('$ionicView.enter', function(e) {
   //});
+  document.getElementById("gg").onclick = function() { 
+    if(window.location.href.endsWith("drink")) {
+      var bar = $rootScope.bar;
+      bar.animate(Math.min(1.0, bar.value() + Math.random()*0.2)); 
+    } else {
+      window.location.href = "#/tab/account";
+      console.log(window.location.href);
+    }
+  };
 
   var range = document.getElementById("range-input");
   /*
@@ -155,8 +165,20 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
+.controller('AccountCtrl', function($scope, $http) {
+  
+  var form = document.getElementById("bank-form");
+  var button = document.getElementById("submit-button");
+  button.disabled = true;
+
+  $http.get('https://startupbus-buzz.herokuapp.com/api/fastlinkvalues')
+  .then(function(response) {
+    console.log(response);
+    var res = response.data;
+    console.log(res);
+    button.disabled = false;
+    document.getElementById("field-session").value = res.user_token;
+    document.getElementById("field-token").value = res.application_token;
+  });
+
 });

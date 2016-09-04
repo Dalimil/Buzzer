@@ -1,26 +1,16 @@
 <ion-view view-title="Friends">
-  <ion-content class="has-header">
-    <div class="row">
-      <div class="col">
-      First deal
-      </div>
+  <ion-content class="has-header">    
+    <p class="padding">Select offer to start saving on your night out:</p>
+    <ion-list class="">
+      <ion-item class="deals-list item-remove-animate item-icon-right" style="padding-bottom: 0" ng-repeat="deal in deals" type="item-text-wrap">
+        <h2>{{deal.title}}</h2>
+        <span>{{deal.description}}</span>
 
-      <div class="col">
-      Second deal
-      </div>
+        <i class="icon ion-chevron-right icon-accessory"></i>
 
-    </div>
-
-    <div class="row">
-
-      <div class="col">
-      Third deal
-      </div>
-
-      <div class="col">
-      Fourth deal
-      </div>
-    </div>
+        <span style="font-size: 1.3em; float: right;position:relative; top: -1.5em;">&dollar;{{deal.price[1]}}  <i class="ion-ios-arrow-thin-right"></i>  &dollar;{{deal.price[0]}}</span>
+      </ion-item>
+    </ion-list>
     
   </ion-content>
 </ion-view>

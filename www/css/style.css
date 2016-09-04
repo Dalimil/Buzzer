@@ -25,3 +25,10 @@ body, h1, h2, h3, h4, h5, h6, p {
 	background-color: #ccffff;
 	color: black;
 }
+.hidden {
+	display: none;
+}
+.deals-list {
+	background-color: #f3f4c8;
+	margin-bottom: 10px;
+}
