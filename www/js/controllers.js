@@ -106,22 +106,28 @@ angular.module('starter.controllers', ["ngCordova"])
       if(value >= 50 && ! $scope.main.pastFifty) {
         $scope.main.pastFifty = true;
         $cordovaLocalNotification.schedule({
-            id: 1,
+            at: Date.now(),
             title: "Slow Down",
-            text: "You've spent half of your budget!"
+            text: "You've spent half of your budget!",
+            led: "FFFFFF"
         });
       } else if(value >= 100 && ! $scope.main.pastOne) {
           $scope.main.pastOne = true;
           $cordovaLocalNotification.schedule({
-            id: 1,
+            at: Date.now(),
             title: "You've reached tonight's limit",
-            text: "You've spent over 100% of your budget!"
+            text: "You've spent over 100% of your budget!",
+            led: "FFFFFF"
         });
       }
     }
   });
   bar.text.style.fontFamily = '"Lato", sans-serif';
   $rootScope.bar = bar;
+
+  document.getElementById("simulate-button").onclick = function() {
+      bar.animate(Math.min(1.0, bar.value() + Math.random()*0.2)); 
+  };
 
 })
 
@@ -135,6 +141,18 @@ angular.module('starter.controllers', ["ngCordova"])
   //});
   $scope.deals = Deals.all();
 
+  var map = null;
+
+  $scope.$on('$ionicView.enter', function(e) {
+    console.log(typeof google != "undefined");
+    if(typeof google != "undefined") {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 50.924, lng: 5.29},
+        zoom: 10
+      });
+    }
+  });
+
 })
 
 .controller('BuzzCtrl', function($scope, $rootScope) {
@@ -145,14 +163,9 @@ angular.module('starter.controllers', ["ngCordova"])
   //
   //$scope.$on('$ionicView.enter', function(e) {
   //});
-  document.getElementById("gg").onclick = function() { 
-    if(window.location.href.endsWith("drink")) {
-      var bar = $rootScope.bar;
-      bar.animate(Math.min(1.0, bar.value() + Math.random()*0.2)); 
-    } else {
+  document.getElementById("gg").onclick = function() {
       window.location.href = "#/tab/account";
       console.log(window.location.href);
-    }
   };
 
   var range = document.getElementById("range-input");
