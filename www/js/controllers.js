@@ -60,7 +60,7 @@ angular.module('starter.controllers', ["ngCordova"])
   });
 })
 
-.controller('DrinkCtrl', function($scope, $rootScope, Main, $cordovaLocalNotification) {
+.controller('DrinkCtrl', function($scope, $rootScope, Main, $cordovaLocalNotification, $cordovaToast) {
 
   $scope.main = $rootScope.main || Main.getMain();
   console.log($scope.main);
@@ -93,11 +93,18 @@ angular.module('starter.controllers', ["ngCordova"])
       circle.path.setAttribute('stroke', state.color);
       circle.path.setAttribute('stroke-width', state.width);
 
-      var value = Math.round(circle.value() * 100);
-      $scope.main.percent = (value);
-      $scope.main.count = ((circle.value() * $scope.main.limit).toFixed());
-      countField.innerHTML = $scope.main.count;
-      percentField.innerHTML = $scope.main.percent;
+      var value = circle.value();
+      
+      if(value >= 1) {
+        value = Math.random()*0.007;
+      } else {
+        value -= $scope.main.percent;
+      }
+      // console.log(value, $scope.main.percent);
+      $scope.main.percent += value;
+      $scope.main.count = $scope.main.percent * $scope.main.limit;
+      countField.innerHTML = $scope.main.count.toFixed();
+      percentField.innerHTML = ($scope.main.percent * 100).toFixed();
 
       circle.setText('<img id="emoji-level" src="/img/emo/1.png" style="width: 7em">');
       var emoji = document.getElementById("emoji-level");
@@ -126,12 +133,12 @@ angular.module('starter.controllers', ["ngCordova"])
   $rootScope.bar = bar;
 
   document.getElementById("simulate-button").onclick = function() {
-      bar.animate(Math.min(1.0, bar.value() + Math.random()*0.2)); 
+    bar.animate(Math.min(1.0, bar.value() + Math.random()*0.2));
   };
 
 })
 
-.controller('DealsCtrl', function($scope, Deals) {
+.controller('DealsCtrl', function($scope, Deals, $cordovaToast) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -152,6 +159,12 @@ angular.module('starter.controllers', ["ngCordova"])
       });
     }
   });
+  $scope.buy = function(button) {
+    console.log(button);
+    button.disabled = true;
+    button.innerHTML = "Already bought";
+    $cordovaToast.show("Success", '2000', 'bottom');
+  };
 
 })
 
