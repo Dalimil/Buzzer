@@ -110,7 +110,7 @@ angular.module('starter.controllers', ["ngCordova"])
       var emoji = document.getElementById("emoji-level");
       var ind = Math.round(circle.value() * 6 + 1);
       emoji.src = "img/emo/" + ind + ".png";
-      if(value >= 50 && ! $scope.main.pastFifty) {
+      if($scope.main.percent >= 0.5 && ! $scope.main.pastFifty) {
         $scope.main.pastFifty = true;
         $cordovaLocalNotification.schedule({
             at: Date.now(),
@@ -118,7 +118,7 @@ angular.module('starter.controllers', ["ngCordova"])
             text: "You've spent half of your budget!",
             led: "FFFFFF"
         });
-      } else if(value >= 100 && ! $scope.main.pastOne) {
+      } else if($scope.main.percent >= 1.0 && ! $scope.main.pastOne) {
           $scope.main.pastOne = true;
           $cordovaLocalNotification.schedule({
             at: Date.now(),
