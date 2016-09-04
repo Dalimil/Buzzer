@@ -30,7 +30,7 @@ angular.module('starter.services', [])
     title: "Be At One",
     description: "Bar",
     price: [60, 70]
-  }];
+  }].map(function(x, ind) { var k = x; k.id = ind; return k; });
 
   return {
     all: function() {

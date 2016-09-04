@@ -15,7 +15,7 @@
          <span style="font-size: 1em; font-weight:bold;">&dollar;{{deal.price[0]}}  <i class="ion-ios-arrow-thin-right"></i>  &dollar;{{deal.price[1]}}</span>
         </div>
 
-        <button class="col button button-balanced" ng-click="buy(this)"><i class="ion-ios-cart-outline"></i> Buy</button>
+        <button class="col button button-balanced" ng-click="buy({{deal.id}})" id="buy-btn-{{deal.id}}"><i class="ion-ios-cart-outline"></i> Buy</button>
 
       </div>
       </ion-item>

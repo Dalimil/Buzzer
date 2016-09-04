@@ -159,10 +159,11 @@ angular.module('starter.controllers', ["ngCordova"])
       });
     }
   });
-  $scope.buy = function(button) {
+  $scope.buy = function(id) {
+    var button = document.getElementById("buy-btn-"+id);
     console.log(button);
     button.disabled = true;
-    button.innerHTML = "Already bought";
+    button.innerHTML = "Bought";
     $cordovaToast.show("Success", '2000', 'bottom');
   };
 
