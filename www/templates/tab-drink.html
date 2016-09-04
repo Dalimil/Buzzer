@@ -1,10 +1,28 @@
 <ion-view view-title="Drink">
   <ion-content class="padding has-header">
-  <p style="font-size: 2em; line-height: 1.2em; margin-top: 1em; text-align: center; display: block;">&dollar;<span id="field-count"></span><br /><span style="font-size: 0.5em; line-height: 1em">Tonight's limit is ${{main.limit}}.</span></p>
+
   
     <div id="container"></div>
 
-    <p style="font-size: 1.2em; line-height: 2em; text-align: center; display: block; margin-top: 1em;">You have spent <span id="field-percent"></span>% of your budget.</p>
+    <div style='text-align:center; margin: 2em auto 0; display: block;' class="row">
+
+    	You've spent:
+    </div>
+    <div class="row">
+	    <div class="col">
+	    	
+	    	<p style="font-size: 2em; line-height: 1.2em; margin-top: 1em; text-align: center; display: block;">&dollar;<span id="field-count"></span><br /><span style="font-size: 0.5em; line-height: 1em">Budget ${{main.limit}}.</span></p>
+
+	    </div>
+	    <div class="col">
+	    	
+	    	<p style="font-size: 2em; line-height: 1.2em; margin-top: 1em; text-align: center; display: block;"><span id="field-percent"></span>%<br /><span style="font-size: 0.5em; line-height: 1em">Tonight's limit is ${{main.limit}}.</span></p>
+	    </div>
+    </div>
+
+    <div style='text-align:center; margin: 0 auto; display: block;' class="row">
+
+    </div>
 
   </ion-content>
 </ion-view>

@@ -1,4 +1,6 @@
-angular.module('starter.controllers', [])
+
+
+angular.module('starter.controllers', ["ngCordova"])
 
 .controller('DashCtrl', function($scope) {
   var ctx = document.getElementById("myChart").getContext("2d");
@@ -58,7 +60,7 @@ angular.module('starter.controllers', [])
   });
 })
 
-.controller('DrinkCtrl', function($scope, $rootScope, Main) {
+.controller('DrinkCtrl', function($scope, $rootScope, Main, $cordovaLocalNotification) {
 
   $scope.main = $rootScope.main || Main.getMain();
   console.log($scope.main);
@@ -80,7 +82,7 @@ angular.module('starter.controllers', [])
     strokeWidth: 15,
     trailWidth: 1,
     easing: 'easeOut',
-    duration: 2000,
+    duration: 1000,
     text: {
       autoStyleContainer: false
     },
@@ -101,7 +103,21 @@ angular.module('starter.controllers', [])
       var emoji = document.getElementById("emoji-level");
       var ind = Math.round(circle.value() * 6 + 1);
       emoji.src = "img/emo/" + ind + ".png";
-
+      if(value >= 50 && ! $scope.main.pastFifty) {
+        $scope.main.pastFifty = true;
+        $cordovaLocalNotification.schedule({
+            id: 1,
+            title: "Slow Down",
+            text: "You've spent half of your budget!"
+        });
+      } else if(value >= 100 && ! $scope.main.pastOne) {
+          $scope.main.pastOne = true;
+          $cordovaLocalNotification.schedule({
+            id: 1,
+            title: "You've reached tonight's limit",
+            text: "You've spent over 100% of your budget!"
+        });
+      }
     }
   });
   bar.text.style.fontFamily = '"Lato", sans-serif';
@@ -155,7 +171,9 @@ angular.module('starter.controllers', [])
       update: true,
       limit: range.value,
       count: 0,
-      percent: 0
+      percent: 0,
+      pastFifty: false,
+      pastOne: false
     };
     var emoji = document.getElementById("emoji-level");
     if(emoji != null) {
