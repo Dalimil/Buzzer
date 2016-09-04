@@ -2,15 +2,23 @@
   <ion-content class="has-header">    
     <p class="padding">Select offer to start saving on your night out:</p>
     <ion-list class="">
-      <ion-item class="deals-list item-remove-animate item-icon-right" style="padding-bottom: 5px" ng-repeat="deal in deals" type="item-text-wrap">
-        <h2>{{deal.title}}</h2>
-        <span>{{deal.description}}</span>
+      <ion-item class="deals-list item-remove-animate" style="" ng-repeat="deal in deals" type="item-text-wrap">
+      <div class="row">
+        <div class="col">
+          <h2>{{deal.title}}</h2>
+          <span>{{deal.description}}</span>
+        </div>
 
-        <i class="icon ion-chevron-right icon-accessory"></i>
+        <div class="col">
+         <span style="font-size: 1em; font-weight:bold;">&dollar;{{deal.price[0]}}  <i class="ion-ios-arrow-thin-right"></i>  &dollar;{{deal.price[1]}}</span>
+        </div>
 
-        <span style="font-size: 1.3em; float: right;position:relative; top: -1em;">&dollar;{{deal.price[1]}}  <i class="ion-ios-arrow-thin-right"></i>  &dollar;{{deal.price[0]}}</span>
+        <button class="col button button-balanced"><i class="ion-ios-cart-outline"></i> Buy</button>
+
+      </div>
       </ion-item>
     </ion-list>
+    <div id="map"></div>
     
   </ion-content>
 </ion-view>
