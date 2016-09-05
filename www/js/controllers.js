@@ -168,7 +168,7 @@ angular.module('starter.controllers', ["ngCordova"])
         setTimeout(function() {
           console.log(response.data.data);
           button.innerHTML = "Code: "+response.data.data;
-          $cordovaToast.show("Success - response.data.data", '2000', 'bottom');
+          $cordovaToast.show("Success - " + response.data.data, '2000', 'bottom');
         }, 1000);
       });
   };
