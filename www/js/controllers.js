@@ -138,7 +138,7 @@ angular.module('starter.controllers', ["ngCordova"])
 
 })
 
-.controller('DealsCtrl', function($scope, Deals, $cordovaToast) {
+.controller('DealsCtrl', function($scope, Deals, $cordovaToast, $http) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -163,8 +163,14 @@ angular.module('starter.controllers', ["ngCordova"])
     var button = document.getElementById("buy-btn-"+id);
     console.log(button);
     button.disabled = true;
-    button.innerHTML = "Bought";
-    $cordovaToast.show("Success", '2000', 'bottom');
+    $http.get('https://startupbus-buzz.herokuapp.com/api/buy_deal?id='+id)
+      .then(function(response) {
+        setTimeout(function() {
+          console.log(response.data.data);
+          button.innerHTML = "Code: "+response.data.data;
+          $cordovaToast.show("Success - response.data.data", '2000', 'bottom');
+        }, 1000);
+      });
   };
 
 })
